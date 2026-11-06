@@ -37,10 +37,10 @@
 <body>
 
   <!-- CAMBIA ESTO: tu emoji favorito -->
-  <div class="emoji" id="emoji">🦖</div>
+  <div class="emoji" id="emoji">🐿️</div>
 
   <!-- CAMBIA ESTO: tu nombre -->
-  <h1>Hola, soy Ana</h1>
+  <h1>Haiii, soy Iris</h1>
 
   <p>Esta es mi primera página web y la hice yo.</p>
   <button onclick="sorpresa()">Toca para conocerme 🎲</button>
@@ -50,10 +50,10 @@
   // CAMBIA ESTO: escribe datos curiosos sobre ti
   // Cada dato va entre comillas y termina en coma
   const datos = [
-    "Puedo comer pizza tres días seguidos 🍕",
-    "Canto en la ducha como si fuera un concierto 🎤",
-    "Le tengo miedo a las mariposas 🦋",
-    "Mi superpoder sería teletransportarme ✨"
+    "Leo libros de fantasía extraños 📚",
+    "Me encanta el kpop y mi grupo fav es SKZ ❤️",
+    "Me encantan los reptiles y felinos 🦎🐆",
+    "Mi superpoder sería telequinesis ✨"
   ];
 
   // Colores de fondo que irán apareciendo

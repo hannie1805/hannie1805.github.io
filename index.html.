@@ -40,7 +40,7 @@
   <div class="emoji" id="emoji">🐿️</div>
 
   <!-- CAMBIA ESTO: tu nombre -->
-  <h1>Haiii, soy Iris</h1>
+  <h1>Haii, soy Iris</h1>
 
   <p>Esta es mi primera página web y la hice yo.</p>
   <button onclick="sorpresa()">Toca para conocerme 🎲</button>
@@ -54,6 +54,7 @@
     "Me encanta el kpop y mi grupo fav es SKZ ❤️",
     "Me encantan los reptiles y felinos 🦎🐆",
     "Mi superpoder sería telequinesis ✨"
+    "Mi bias de Stray kids es Hanisiento ♥️❤️"
   ];
 
   // Colores de fondo que irán apareciendo

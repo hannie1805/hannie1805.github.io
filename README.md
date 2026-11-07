@@ -51,10 +51,10 @@
   // CAMBIA ESTO: escribe datos curiosos sobre ti
   // Cada dato va entre comillas y termina en coma
   const datos = [
-    "Puedo comer pizza tres días seguidos 🍕",
-    "Canto en la ducha como si fuera un concierto 🎤",
-    "Le tengo miedo a las mariposas 🦋",
-    "Mi superpoder sería teletransportarme ✨"
+    "Me encanta el kpop y mi grupo fav es SKZ ❤️",
+    "Me encantan los reptiles y felinos 🦎🐆",
+    "Mi superpoder sería telequinesis ✨",
+    "Mi bias de Stray kids es Hanisiento ♥️❤️"
   ];
 
   // Colores de fondo que irán apareciendo

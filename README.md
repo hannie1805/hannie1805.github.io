@@ -41,7 +41,7 @@
   <div class="emoji" id="emoji">🐿️🐰</div>
 
   <!-- CAMBIA ESTO: tu nombre -->
-  <h1>Holita, soy Iris</h1>
+  <h1>Holi, soy Iris</h1>
 
   <p>Esta es mi primera página web y la hice yo.</p>
   <button onclick="sorpresa()">Toca para conocerme 🎲</button>

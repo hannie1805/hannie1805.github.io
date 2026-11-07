@@ -1,75 +1,132 @@
 # hannie1805.github.io
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi primera web</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para Sharick 💌</title>
 <style>
-  body {
-    font-family: Serif, sans-serif;
-    background: #6c5ce7;
-    color: white;
-    text-align: center;
-    padding: 40px 20px;
-    transition: background 0.5s;
-  }
-  .emoji {
-    font-size: 90px;
-    display: inline-block;
-    transition: transform 0.4s;
-  }
-  button {
-    font-size: 20px;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 30px;
-    background: white;
-    color: #333;
-    cursor: pointer;
-  }
-  #dato {
-    font-size: 22px;
-    margin-top: 25px;
-    min-height: 60px;
-  }
+body {
+margin: 0;
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #fdf2f6;
+font-family: Georgia, serif;
+overflow-x: hidden;
+}
+#sobre {
+width: 240px;
+height: 160px;
+background: #9900ff;
+color: white;
+border-radius: 14px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: 60px;
+cursor: pointer;
+animation: latido 1.2s infinite;
+}
+#sobre p {
+font-size: 16px;
+margin: 8px 0 0;
+}
+#carta {
+display: none;
+width: 85%;
+max-width: 420px;
+margin: 30px 0;
+background: white;
+padding: 25px;
+border-radius: 16px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+#carta.visible {
+display: block;
+animation: aparecer 0.8s;
+}
+h1, h2 {
+color: #9900ff;
+}
+button {
+background: #9900ff;
+color: white;
+border: none;
+padding: 12px 20px;
+border-radius: 30px;
+font-size: 16px;
+}
+.corazon {
+position: fixed;
+bottom: -40px;
+font-size: 28px;
+animation: subir 3s linear forwards;
+}
+@keyframes latido {
+50% { transform: scale(1.1); }
+}
+@keyframes aparecer {
+from { opacity: 0; transform: scale(0.5); }
+to { opacity: 1; transform: scale(1); }
+}
+@keyframes subir {
+to { transform: translateY(-110vh); opacity: 0; }
+}
 </style>
 </head>
 <body>
-
-  <!-- CAMBIA ESTO: tu emoji favorito -->
-  <div class="emoji" id="emoji">🐿️🐰</div>
-
-  <!-- CAMBIA ESTO: tu nombre -->
-  <h1>Holi, soy Iris</h1>
-
-  <p>Esta es mi primera página web y la hice yo.</p>
-  <button onclick="sorpresa()">Toca para conocerme 🎲</button>
-  <p id="dato"></p>
-
+<div id="sobre">
+💌
+<p>Toca aquí, Sharick</p>
+</div>
+<div id="carta">
+<h1>La 'compañerita' naa mi amiguita Sharick: </h1>
+<p>Cuando te dije que nunca te casarías con Jimin 'Lo sigo pensando 🤔'</p>
+<h2>Cosas que admiro de ti</h2>
+<ul>
+<li>Tu resistencia para luchar por lo que quieres</li>
+<li>Tu amor por BTS</li>
+<li>Lo linda que eres</li>
+</ul>
+<p>Te quiero mucho 💞</p>
+<p>Con cariño,<br>Irisita</p>
+<button id="boton">Dame otra razón 💖</button>
+<p id="mensaje"></p>
+</div>
 <script>
-  // CAMBIA ESTO: escribe datos curiosos sobre ti
-  // Cada dato va entre comillas y termina en coma
-  const datos = [
-    "Me encanta el kpop y mi grupo fav es SKZ ❤️",
-    "Me encantan los reptiles y felinos 🦎🐆",
-    "Mi superpoder sería telequinesis ✨",
-    "Mi bias de Stray kids es Hanisiento ♥️❤️"
-  ];
-
-  // Colores de fondo que irán apareciendo
-  const colores = ["#6c5ce7", "#e84393", "#00b894", "#e17055", "#0984e3", "#d63031"];
-
-  function sorpresa() {
-    const dato = datos[Math.floor(Math.random() * datos.length)];
-    const color = colores[Math.floor(Math.random() * colores.length)];
-    const giro = Math.floor(Math.random() * 60) - 30;
-
-    document.getElementById("dato").textContent = dato;
-    document.body.style.background = color;
-    document.getElementById("emoji").style.transform = "rotate(" + giro + "deg) scale(1.2)";
-  }
+const razones = [
+"Por qué pareces loquita 🤣",
+"Por qué me gusta tus caras",
+"Porque si y ya"
+];
+const sobre = document.getElementById("sobre");
+const carta = document.getElementById("carta");
+const boton = document.getElementById("boton");
+const mensaje = document.getElementById("mensaje");
+sobre.onclick = function () {
+sobre.style.display = "none";
+carta.classList.add("visible");
+lluvia();
+};
+boton.onclick = function () {
+const n = Math.floor(Math.random() * razones.length);
+mensaje.textContent = razones[n];
+lluvia();
+};
+function lluvia() {
+for (let i = 0; i < 15; i++) {
+const c = document.createElement("span");
+c.className = "corazon";
+c.textContent = "💖";
+c.style.left = Math.random() * 90 + "vw";
+c.style.animationDelay = Math.random() + "s";
+document.body.appendChild(c);
+setTimeout(function () { c.remove(); }, 4000);
+}
+}
 </script>
-
 </body>
 </html>

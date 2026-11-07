@@ -1,5 +1,5 @@
 # hannie1805.github.io
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,7 @@
 <title>Mi primera web</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
+    font-family: Serif, sans-serif;
     background: #6c5ce7;
     color: white;
     text-align: center;
@@ -38,10 +38,10 @@
 <body>
 
   <!-- CAMBIA ESTO: tu emoji favorito -->
-  <div class="emoji" id="emoji">🐿️</div>
+  <div class="emoji" id="emoji">🐿️🐰</div>
 
   <!-- CAMBIA ESTO: tu nombre -->
-  <h1>Hola, soy Iris</h1>
+  <h1>Holita, soy Iris</h1>
 
   <p>Esta es mi primera página web y la hice yo.</p>
   <button onclick="sorpresa()">Toca para conocerme 🎲</button>

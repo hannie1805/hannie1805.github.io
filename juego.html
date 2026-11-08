@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atrapa a Quokka</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #2a0a14;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    h1 {
+      color: #f81557;
+      font-size: 30px;
+    }
+    .marcador b {
+      color: #f81557;
+      margin-right: 10px;
+    }
+    #zona {
+      position: relative;
+      height: 55vh;
+      border: 3px solid #f81557;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    #bicho {
+      position: absolute;
+      font-size: 50px;
+      background: none;
+      border: none;
+      transition: left 0.3s, top 0.3s;
+      touch-action: manipulation;
+    }
+    #empezar {
+      margin-top: 15px;
+      padding: 15px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50px;
+      background: #f81557;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Atrapa a Quokka</h1>
+  <p class="marcador">
+    Puntos: <b id="puntos">0</b>
+    Tiempo: <b id="tiempo">20</b>
+    Récord: <b id="record">0</b>
+  </p>
+  <div id="zona">
+    <button id="bicho">🐿️</button>
+  </div>
+  <button id="empezar">¡Jugar!</button>
+  <p id="mensaje">Toca el 🐿️ antes de que se escape</p>
+  <script>
+    let puntos = 0;
+    let tiempo = 20;
+    let jugando = false;
+    let reloj;
+    let record = localStorage.getItem("record") || 0;
+    const bicho = document.getElementById("bicho");
+    const zona = document.getElementById("zona");
+    document.getElementById("record").textContent = record;
+    function mover() {
+      let x = Math.random() * (zona.clientWidth - 70);
+      let y = Math.random() * (zona.clientHeight - 70);
+      bicho.style.left = x + "px";
+      bicho.style.top = y + "px";
+    }
+    mover();
+
+    bicho.addEventListener("click", function () {
+      if (jugando) {
+        puntos = puntos + 1;
+        document.getElementById("puntos").textContent = puntos;
+        mover();
+      }
+    });
+    function empezar() {
+      puntos = 0;
+      tiempo = 20;
+      jugando = true;
+      document.getElementById("puntos").textContent = puntos;
+      document.getElementById("tiempo").textContent = tiempo;
+      document.getElementById("mensaje").textContent = "¡Atrápalo!";
+      clearInterval(reloj);
+      reloj = setInterval(function () {
+        tiempo = tiempo - 1;
+        document.getElementById("tiempo").textContent = tiempo;
+        mover();
+        if (tiempo <= 0) {
+          terminar();
+        }
+      }, 1000);
+    }
+    function terminar() {
+      jugando = false;
+      clearInterval(reloj);
+      if (puntos > record) {
+        record = puntos;
+        localStorage.setItem("record", record);
+        document.getElementById("record").textContent = record;
+      }
+      document.getElementById("mensaje").textContent = "¡끝났어! Hiciste " + puntos + " puntos";
+    }
+    document.getElementById("empezar").addEventListener("click", empezar);
+  </script>
+</body>
+</html>

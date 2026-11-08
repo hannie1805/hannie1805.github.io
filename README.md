@@ -2,131 +2,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Para Sharick 💌</title>
-<style>
-body {
-margin: 0;
-min-height: 100vh;
-display: flex;
-align-items: center;
-justify-content: center;
-background: #fdf2f6;
-font-family: Georgia, serif;
-overflow-x: hidden;
-}
-#sobre {
-width: 240px;
-height: 160px;
-background: #9900ff;
-color: white;
-border-radius: 14px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-font-size: 60px;
-cursor: pointer;
-animation: latido 1.2s infinite;
-}
-#sobre p {
-font-size: 16px;
-margin: 8px 0 0;
-}
-#carta {
-display: none;
-width: 85%;
-max-width: 420px;
-margin: 30px 0;
-background: white;
-padding: 25px;
-border-radius: 16px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-#carta.visible {
-display: block;
-animation: aparecer 0.8s;
-}
-h1, h2 {
-color: #9900ff;
-}
-button {
-background: #9900ff;
-color: white;
-border: none;
-padding: 12px 20px;
-border-radius: 30px;
-font-size: 16px;
-}
-.corazon {
-position: fixed;
-bottom: -40px;
-font-size: 28px;
-animation: subir 3s linear forwards;
-}
-@keyframes latido {
-50% { transform: scale(1.1); }
-}
-@keyframes aparecer {
-from { opacity: 0; transform: scale(0.5); }
-to { opacity: 1; transform: scale(1); }
-}
-@keyframes subir {
-to { transform: translateY(-110vh); opacity: 0; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atrapa a Quokka</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #2a0a14;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    h1 {
+      color: #f81557;
+      font-size: 30px;
+    }
+    .marcador b {
+      color: #f81557;
+      margin-right: 10px;
+    }
+    #zona {
+      position: relative;
+      height: 55vh;
+      border: 3px solid #f81557;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    #bicho {
+      position: absolute;
+      font-size: 50px;
+      background: none;
+      border: none;
+      transition: left 0.3s, top 0.3s;
+      touch-action: manipulation;
+    }
+    #empezar {
+      margin-top: 15px;
+      padding: 15px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50px;
+      background: #f81557;
+    }
+
+  </style>
 </head>
 <body>
-<div id="sobre">
-💌
-<p>Toca aquí, Sharick</p>
-</div>
-<div id="carta">
-<h1>La 'compañerita' naa mi amiguita Sharick: </h1>
-<p>Cuando te dije que nunca te casarías con Jimin 'Lo sigo pensando 🤔'</p>
-<h2>Cosas que admiro de ti</h2>
-<ul>
-<li>Tu resistencia para luchar por lo que quieres</li>
-<li>Tu amor por BTS</li>
-<li>Lo linda que eres</li>
-</ul>
-<p>Te quiero mucho 💞</p>
-<p>Con cariño,<br>Irisita</p>
-<button id="boton">Dame otra razón 💖</button>
-<p id="mensaje"></p>
-</div>
-<script>
-const razones = [
-"Por qué pareces loquita 🤣",
-"Por qué me gusta tus caras",
-"Porque si y ya"
-];
-const sobre = document.getElementById("sobre");
-const carta = document.getElementById("carta");
-const boton = document.getElementById("boton");
-const mensaje = document.getElementById("mensaje");
-sobre.onclick = function () {
-sobre.style.display = "none";
-carta.classList.add("visible");
-lluvia();
-};
-boton.onclick = function () {
-const n = Math.floor(Math.random() * razones.length);
-mensaje.textContent = razones[n];
-lluvia();
-};
-function lluvia() {
-for (let i = 0; i < 15; i++) {
-const c = document.createElement("span");
-c.className = "corazon";
-c.textContent = "💖";
-c.style.left = Math.random() * 90 + "vw";
-c.style.animationDelay = Math.random() + "s";
-document.body.appendChild(c);
-setTimeout(function () { c.remove(); }, 4000);
-}
-}
-</script>
+  <h1>Atrapa a Quokka</h1>
+  <p class="marcador">
+    Puntos: <b id="puntos">0</b>
+    Tiempo: <b id="tiempo">20</b>
+    Récord: <b id="record">0</b>
+  </p>
+  <div id="zona">
+    <button id="bicho">🐿️</button>
+  </div>
+  <button id="empezar">¡Jugar!</button>
+  <p id="mensaje">Toca el 🐿️ antes de que se escape</p>
+  <script>
+    let puntos = 0;
+    let tiempo = 20;
+    let jugando = false;
+    let reloj;
+    let record = localStorage.getItem("record") || 0;
+    const bicho = document.getElementById("bicho");
+    const zona = document.getElementById("zona");
+    document.getElementById("record").textContent = record;
+    function mover() {
+      let x = Math.random() * (zona.clientWidth - 70);
+      let y = Math.random() * (zona.clientHeight - 70);
+      bicho.style.left = x + "px";
+      bicho.style.top = y + "px";
+    }
+    mover();
+    bicho.addEventListener("click", function () {
+      if (jugando) {
+        puntos = puntos + 1;
+        document.getElementById("puntos").textContent = puntos;
+        mover();
+      }
+    });
+    function empezar() {
+      puntos = 0;
+      tiempo = 20;
+      jugando = true;
+      document.getElementById("puntos").textContent = puntos;
+      document.getElementById("tiempo").textContent = tiempo;
+      document.getElementById("mensaje").textContent = "¡Atrápalo!";
+      clearInterval(reloj);
+      reloj = setInterval(function () {
+        tiempo = tiempo - 1;
+        document.getElementById("tiempo").textContent = tiempo;
+        mover();
+        if (tiempo <= 0) {
+          terminar();
+        }
+      }, 1000);
+    }
+    function terminar() {
+      jugando = false;
+      clearInterval(reloj);
+      if (puntos > record) {
+        record = puntos;
+        localStorage.setItem("record", record);
+        document.getElementById("record").textContent = record;
+      }
+      document.getElementById("mensaje").textContent = "¡끝났어! Hiciste " + puntos + " puntos";
+    }
+document.getElementById("empezar").addEventListener("click", empezar);
+  </script>
 </body>
 </html>
